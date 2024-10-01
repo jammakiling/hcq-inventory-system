@@ -6,6 +6,18 @@
     <title>Product List</title>
 </head>
 <body>
-    <h1>Product List<h1>
+    <h2>Product List</h2>
+<a href="{% url 'inventory:product_create' %}">Add Product</a>
+<ul>
+    {% for product in products %}
+        <li>{{ product.name }} - {{ product.price }}
+            <a href="{% url 'inventory:product_update' product.pk %}">Edit</a>
+            <a href="{% url 'inventory:product_delete' product.pk %}">Delete</a>
+        </li>
+    {% empty %}
+    <li>No products available.</li>
+    {% endfor %}
+
+</ul>
 </body>
 </html>
