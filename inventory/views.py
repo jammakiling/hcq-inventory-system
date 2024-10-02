@@ -78,3 +78,38 @@ def brand_delete(request, pk):
    return render(request, 'inventory/brand_confirm_delete.html', {'brand':brand})
 
 #Category
+# View Category List
+def category_list(request):
+   categories = Category.objects.all()
+   return render(request, 'inventory/category_list.html' , {'categories': categories})
+
+# Create a category
+def category_create(request):
+   if request.method == 'POST':
+      form= CategoryForm(request.POST)
+      if form.is_valid():
+         form.save()
+         return redirect('inventory:category_list')
+   else:
+      form = CategoryForm()
+      return render (request, 'inventory/category_form.html' , {'form' :form})
+   
+# Update a category
+def category_update(request, pk):
+   category = get_object_or_404(Category, pk=pk)
+   if request.method =='POST':
+      form =CategoryForm(request.POST, instance=category)
+      if form.is_valid():
+         form.save()
+         return redirect('inventory:category_list')
+   else:
+      form = CategoryForm(instance=category)
+   return render(request, 'inventory/category_form.html', {'form': form})
+
+# Delete a category
+def category_delete(request, pk):
+   category = get_object_or_404(Category, pk=pk)
+   if request.method == 'POST':
+      category.delete()
+      return redirect('inventory:category_list')
+   return render(request, 'inventory/category_confirm_delete.html', {'category':category})

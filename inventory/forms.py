@@ -14,5 +14,5 @@ class BrandForm(forms.ModelForm):
 
 class CategoryForm(forms.ModelForm):
     class Meta:
-        model = models.Brand
+        model = models.Category
         fields = ['name']
