@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brand List</title>
+</head>
+<body>
+<nav>
+    <a href="/inventory/products">Products</a>
+    <a href="/inventory/products/categories">Categories</a>
+</nav>
+    <h2>Brand List</h2>
+<a href="{% url 'inventory:brand_create' %}">Add Brand</a>
+<ul>
+    {% for brand in brands %}
+        <li>{{ brand.name }} 
+            <a href="{% url 'inventory:brand_update' brand.pk %}">Edit</a>
+            <a href="{% url 'inventory:brand_delete' brand.pk %}">Delete</a>
+        </li>
+    {% empty %}
+    <li>No brands available.</li>
+    {% endfor %}
+
+</ul>
+</body>
+</html>
