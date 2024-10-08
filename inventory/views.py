@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from . import forms
-from .models import Product, Brand, Category
-from .forms import ProductForm, BrandForm, CategoryForm
+from .models import Product, Brand, Category, Unit
+from .forms import ProductForm, BrandForm, CategoryForm ,UnitForm
 
 #Product
 # View Product List
@@ -113,3 +113,40 @@ def category_delete(request, pk):
       category.delete()
       return redirect('inventory:category_list')
    return render(request, 'inventory/category_confirm_delete.html', {'category':category})
+
+#Unit
+# View Unit List
+def unit_list(request):
+   units = Unit.objects.all()
+   return render(request, 'inventory/unit_list.html' , {'units': units})
+
+# Create a unit
+def unit_create(request):
+   if request.method == 'POST':
+      form= UnitForm(request.POST)
+      if form.is_valid():
+         form.save()
+         return redirect('inventory:unit_list')
+   else:
+      form = UnitForm()
+      return render (request, 'inventory/unit_form.html' , {'form' :form})
+   
+# Update a unit
+def unit_update(request, pk):
+   unit = get_object_or_404(Unit, pk=pk)
+   if request.method =='POST':
+      form =UnitForm(request.POST, instance=unit)
+      if form.is_valid():
+         form.save()
+         return redirect('inventory:unit_list')
+   else:
+      form = UnitForm(instance=unit)
+   return render(request, 'inventory/unit_form.html', {'form': form})
+
+# Delete a unit
+def unit_delete(request, pk):
+   unit = get_object_or_404(Unit, pk=pk)
+   if request.method == 'POST':
+      unit.delete()
+      return redirect('inventory:unit_list')
+   return render(request, 'inventory/unit_confirm_delete.html', {'unit':unit})

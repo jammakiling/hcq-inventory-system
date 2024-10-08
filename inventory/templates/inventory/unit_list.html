@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unit List</title>
+</head>
+<body>
+<nav>
+    <a href="/inventory/products">Products</a>
+    <a href="/inventory/products/categories">Categories</a>
+    <a href="/inventory/products/brands">Brands</a>
+</nav>
+    <h2>Unit List</h2>
+<a href="{% url 'inventory:unit_create' %}">Add Unit of Measurement</a>
+<ul>
+    {% for unit in units %}
+        <li>{{ unit.shortname }} 
+            <a href="{% url 'inventory:unit_update' unit.pk %}">Edit</a>
+            <a href="{% url 'inventory:unit_delete' unit.pk %}">Delete</a>
+        </li>
+    {% empty %}
+    <li>No unit of measurement available.</li>
+    {% endfor %}
+
+</ul>
+</body>
+</html>

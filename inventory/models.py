@@ -17,6 +17,12 @@ class Category(models.Model):
     def __str__(self):
         return self.name
 
+class Unit(models.Model):
+    name= models.CharField(max_length=20)
+    shortname= models.CharField(max_length=3)
+
+    def __str__(self):
+        return self.name
 
 
 
@@ -36,6 +42,13 @@ class Product(models.Model):
     
     category = models.ForeignKey(
         Category, 
+        on_delete=models.SET_NULL, 
+        null=True, 
+        blank=True
+    )
+
+    unit = models.ForeignKey(
+        Unit, 
         on_delete=models.SET_NULL, 
         null=True, 
         blank=True
