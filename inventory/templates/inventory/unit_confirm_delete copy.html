@@ -1,7 +1,0 @@
-<h2>Delete Unit</h2>
-<p>Are you sure you want to delete "{{ unit.name }}"?</p>
-<form method="post">
-    {% csrf_token %}
-    <button type="submit">Confirm</button>
-</form>
-<a href="{% url 'inventory:unit_list' %}">Cancel</a>

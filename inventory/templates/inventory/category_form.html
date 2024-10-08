@@ -1,6 +1,34 @@
-<h2>{% if form.instance.pk %}Edit{% else %}Create{% endif %} Category</h2>
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Save</button>
-</form>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% if form.instance.pk %}Edit{% else %}Create{% endif %} Category</title>
+    <!-- Link to Bootstrap CSS for styling -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container mt-5">
+    <!-- Header that changes based on whether editing or creating a category -->
+    <h2>{% if form.instance.pk %}Edit{% else %}Create{% endif %} Category</h2>
+    <form method="post">
+        {% csrf_token %} <!-- CSRF token for security -->
+        
+        <!-- Form Group for Category Name -->
+        <div class="form-group">
+            <label for="id_name">Category Name</label>
+            {{ form.name }} <!-- Apply Bootstrap's form-control class -->
+        </div>
+        <!-- Submit Button -->
+        <button type="submit" class="btn btn-primary">Save</button>
+        <!-- Cancel Button that redirects to category list -->
+        <a href="{% url 'inventory:category_list' %}" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
+
+<!-- Scripts for Bootstrap functionality (jQuery and Popper.js) -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

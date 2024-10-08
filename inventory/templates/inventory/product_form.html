@@ -1,6 +1,77 @@
-<h2>{% if form.instance.pk %}Edit{% else %}Create{% endif %} Product</h2>
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Save</button>
-</form>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% if form.instance.pk %}Edit{% else %}Create{% endif %} Product</title>
+    <!-- Link to Bootstrap CSS for styling -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container mt-5">
+    <!-- Header that changes based on whether editing or creating a product -->
+    <h2>{% if form.instance.pk %}Edit{% else %}Create{% endif %} Product</h2>
+    <form method="post">
+        {% csrf_token %} <!-- CSRF token for security -->
+        
+        <!-- Form Group for Product Name -->
+        <div class="form-group">
+            <label for="id_name">Product Name</label>
+            {{ form.name }} <!-- Apply Bootstrap's form-control class -->
+        </div>
+        
+        <!-- Form Group for Price -->
+        <div class="form-group">
+            <label for="id_price">Price</label>
+            {{ form.price }} <!-- Apply Bootstrap's form-control class -->
+        </div>
+        
+        <!-- Form Group for Stock Quantity -->
+        <div class="form-group">
+            <label for="id_stock_quantity">Stock Quantity</label>
+            {{ form.stock_quantity }} <!-- Apply Bootstrap's form-control class -->
+        </div>
+        
+        <!-- Form Group for Product Code -->
+        <div class="form-group">
+            <label for="id_product_code">Product Code</label>
+            {{ form.product_code }} <!-- Apply Bootstrap's form-control class -->
+        </div>
+        
+        <!-- Form Group for Brand -->
+        <div class="form-group">
+            <label for="id_brand">Brand</label>
+            {{ form.brand }} <!-- Apply Bootstrap's form-control class -->
+        </div>
+        
+        <!-- Form Group for Category -->
+        <div class="form-group">
+            <label for="id_category">Category</label>
+            {{ form.category }} <!-- Apply Bootstrap's form-control class -->
+        </div>
+        
+        <!-- Form Group for Unit of Measurement -->
+        <div class="form-group">
+            <label for="id_unit">Unit of Measurement</label>
+            {{ form.unit }} <!-- Apply Bootstrap's form-control clas1s -->
+        </div>
+        
+        <!-- Form Group for Description -->
+        <div class="form-group">
+            <label for="id_description">Description</label>
+            {{ form.description }} <!-- Apply Bootstrap's form-control class -->
+        </div>
+        
+        <!-- Submit Button -->
+        <button type="submit" class="btn btn-primary">Save</button>
+        <!-- Cancel Button that redirects to product list -->
+        <a href="{% url 'inventory:product_list' %}" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
+
+<!-- Scripts for Bootstrap functionality (jQuery and Popper.js) -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

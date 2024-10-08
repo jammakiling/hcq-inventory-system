@@ -11,16 +11,30 @@
     </title>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <script src="{% static 'js/main.js' %}" defer></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
 </head>
 <body>
-    <nav>
-        <a href="/">Home</a> | 
-        <a href="/about">About</a> | 
-        <a href="/inventory/products">Products</a>
-    </nav>
+    <div class="page">
+    <div class = "pagebox sidebar">
+        <nav>
+            <ul>
+                <li> <a href="/">Home</a> </li>
+                <li> <a href="/about">About</a> </li>
+                <li> <a href="/inventory/products">Products</a></li>
+                <li> <a href="/">Sales</a></li>
+                <li> <a href="/">Suppliiers</a></li>
+                <li> <a href="/">Deliveries</a></li>
+            </ul>
+        </nav>
+    </div>
+    <div class ="pagebox maincontainer">
     <main>
         {% block content %}
         {% endblock %}
     </main>
+    </div>
+    </div>
 </body>
 </html>

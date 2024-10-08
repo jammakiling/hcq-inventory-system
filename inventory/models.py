@@ -1,4 +1,5 @@
 from django.db import models
+import uuid
 
 # Create your models here.
 
@@ -27,6 +28,7 @@ class Unit(models.Model):
 
 
 class Product(models.Model):
+    product_code = models.CharField(max_length=50, unique=True)
     name= models.CharField(max_length=100)
     description = models.TextField(blank=True)
     price = models.DecimalField(max_digits=10,decimal_places=2)
@@ -54,6 +56,11 @@ class Product(models.Model):
         blank=True
     )
 
+
+    def save(self, *args, **kwargs):
+        if not self.product_code:  # If no product code is set
+            self.product_code = str(uuid.uuid4())  # Generate a new UUID for product code
+        super().save(*args, **kwargs)
     def __str__(self):
-        return self.name
+        f'{self.name} ({self.product_code})'
     
